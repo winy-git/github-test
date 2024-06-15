@@ -32,4 +32,38 @@
         </script>
 
     </body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>kakao login</title>
+        <meta charset="UTF-8">
+        <meta name="kakao login" content="This is a kakao login example.">
+
+    </head>
+    <body>
+        <a href="javascript:kakaoLogin();"><img src="abcdef.jpg" style="height: 60px; width: auto"></a>
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        <script>
+            window.kakao.init("7731f4205e...");
+
+            function kakaoLogin() {
+                window.kakao.Auth.logi({
+                    scope: 'profile, account_email, gender'
+                    success: function(authObj) {
+                        console.log(authObj);
+                        window.kakao.API.request({
+                            url:'/v2/user/me',
+                            success: res => {
+                                const kakao_account = res.kakao_account;
+                                console.log(kakao_account);
+                            }
+
+                        });
+                    }
+
+                });
+            }
+        </script>
+
+    </body>
 </html>
